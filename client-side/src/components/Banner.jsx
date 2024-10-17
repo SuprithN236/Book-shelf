@@ -3,7 +3,7 @@ import BannerCard from "./BannerCard";
 
 function Banner() {
   return (
-    <div className="px-4 lg:px-28 flex items-center bg-[#beef00]">
+    <div className="px-4 lg:px-28 flex items-center bg-[#6b9080]">
       <div className="flex w-full flex-col md:flex-row justify-between items-center gap-12 py-32">
         <div className="space-y-5 md:w-1/2 h-full">
           <h2 className="text-5xl font-bold leading-snug text-black">
