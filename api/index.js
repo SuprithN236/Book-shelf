@@ -4,7 +4,7 @@ const cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const app = express();
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 
 // middlewares
 
@@ -103,7 +103,7 @@ async function run() {
 
 run().catch(console.dir);
 
-app.listen(port, () => {
+app.listen(3000, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
