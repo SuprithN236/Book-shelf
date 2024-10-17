@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv");
 // copied from mongodb atlas
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
@@ -19,9 +20,11 @@ app.use(
 app.use(express.json());
 
 const uri =
+  process.env.MONGODB_URL ||
   "mongodb+srv://suprithn:suprithn@cluster0.yhagvpl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
+
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -30,7 +33,11 @@ const client = new MongoClient(uri, {
   },
 });
 
-client.connect().then(() => console.log("connected successfully"));
+try {
+  client.connect().then(() => console.log("connected successfully"));
+} catch (error) {
+  console.log("there is an error");
+}
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
