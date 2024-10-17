@@ -35,10 +35,12 @@ const client = new MongoClient(uri, {
   },
 });
 
+client.connect().then(() => console.log("connected successfully"));
+
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     // creating a new database and a new collection
     const bookCollections = client.db("BookInventory").collection("books");
@@ -104,7 +106,7 @@ async function run() {
 run().catch(console.dir);
 
 app.listen(3000, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port ${3000}`);
 });
 
 module.exports = app;
