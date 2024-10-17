@@ -18,11 +18,6 @@ app.use(
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-// database connection string
 const uri =
   "mongodb+srv://suprithn:suprithn@cluster0.yhagvpl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
@@ -36,6 +31,12 @@ const client = new MongoClient(uri, {
 });
 
 client.connect().then(() => console.log("connected successfully"));
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+// database connection string
 
 async function run() {
   try {
