@@ -5,25 +5,10 @@ const dotenv = require("dotenv");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const app = express();
-// const port = process.env.PORT || 3000;
-
-// middlewares
-
-app.use(
-  cors({
-    origin: "*",
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
-
-app.use(express.json());
 
 const uri =
   process.env.MONGODB_URL ||
   "mongodb+srv://suprithn:suprithn@cluster0.yhagvpl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -38,6 +23,12 @@ try {
 } catch (error) {
   console.log("there is an error");
 }
+
+app.use(cors());
+
+app.use(express.json());
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -63,7 +54,7 @@ async function run() {
     // get method to get all books
     app.get("/books", async (req, res) => {
       const books = await bookCollections.find({}).toArray();
-      res.status(200).json(books);
+      res.status(200).json({ books });
     });
 
     // get books by its genre
