@@ -19,7 +19,13 @@ const client = new MongoClient(uri, {
 });
 
 try {
-  client.connect().then(() => console.log("connected successfully"));
+  client
+    .connect()
+    .then(() => console.log("connected successfully"))
+    .catch((err) => {
+      console.log("Error while connecting to the database");
+      console.log(err);
+    });
 } catch (error) {
   console.log("there is an error");
 }
@@ -38,10 +44,6 @@ app.get("/", (req, res) => {
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
-    // await client.connect();
-
-    // creating a new database and a new collection
     const bookCollections = client.db("BookInventory").collection("books");
 
     // post method to upload a book
